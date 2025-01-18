@@ -1,13 +1,16 @@
-import { object, string} from "yup";
+import { object, string } from "yup";
+
 const messages = {
-  
-  email: "Username can't be blank",
-  pass: "Username can't be blank",
+  email: "Please enter a valid email address",
+  pass: "Password can't be blank",
 };
 
 let validation = object({
-  email: string().required(messages.email),
-  password: string().required(messages.pass)
-   
+  email: string()
+    .email(messages.email) // Email format doğrulaması
+    .required("Email is required"), // Zorunlu alan mesajı
+  password: string()
+    .required(messages.pass), // Şifre için doğrulama
 });
+
 export default validation;
