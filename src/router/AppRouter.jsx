@@ -2,14 +2,14 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import PrivateRouter from "./PrivateRouter";
 import AnimatedImage from "../components/LogoAnimation";
-// import Toast from "../components/toastMessage/Toast";
+import Toast from "../components/toastMessage/Toast";
 // import Home from "../pages/admin/Home";
-// import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = lazy(() => import("../pages/Login"));
 
 const AddCampus = lazy(() => import("../pages/admin/AddCampus"));
-// const Home = lazy(() => import("../pages/admin/Home"));
+const Home = lazy(() => import("../pages/admin/Home"));
 // const SecurityHome = lazy(() => import("../pages/security/SecurityHome"));
 // const VisitorHistory = lazy(() => import("../pages/security/VisitorHistory"));
 // const ListInstutions = lazy(() => import("../pages/superAdmin/ListInstutions"));
@@ -35,7 +35,7 @@ const AddCampus = lazy(() => import("../pages/admin/AddCampus"));
 // const Room = lazy(() => import("../pages/Room"));
 // const Templates = lazy(() => import("../pages/Templates"));
 // const RoomLive = lazy(() => import("../pages/admin/RoomLive"));
-// const Module = lazy(() => import("../pages/Module"));
+const Module = lazy(() => import("../pages/Module"));
 // const HomeClient = lazy(() => import("../pages/HomeClient"));
 // const Locations = lazy(() => import("../pages/admin/Locations"));
 // const DeleteLocations = lazy(() => import("../pages/admin/DeleteLocations"));
@@ -48,20 +48,19 @@ const routesConfig = {
 
 };
 const AppRouter = () => {
-//    const user = useAuth();
-  
-    const user = null;
-    const userRoutes = user?.role ? routesConfig[user.role] : [];
+   const user = useAuth();
+   console.log("user", user);
+    const userRoutes = user ? routesConfig["admin"] : [];
 
   return (
     <Suspense fallback={<AnimatedImage />}>
       <Routes>
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/" element={<PrivateRouter allowedRoles={[user?.role]} />}>
+        <Route path="/" element={<PrivateRouter />}>
           <Route
             path="/"
             element={
-                user?.role === "admin" ? (
+                user ? (
                 <Home />
               ) : null
             }
@@ -77,9 +76,9 @@ const AppRouter = () => {
               ))}
             <Route path="*" element={<Module />} />
           </Route>
-        </Route> */}
+        </Route>
       </Routes>
-      {/* <Toast /> */}
+      <Toast />
     </Suspense>
   );
 };

@@ -8,7 +8,6 @@ import { selectMenuSize, selectPageName, setPageName, setTheme, setThemeMenu } f
 import { themeTabs } from "../../tabs/themeTabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { selectCurrentUser } from "../../store/services/authSlice";
-import { clientTabs, superAdminTabs } from "../../tabs/superAdminTabs";
 import { useNavigate } from "react-router-dom";
 import { leftMenuTabs } from "../../tabs/leftMenuTabs";
 
@@ -21,7 +20,7 @@ const Nav = () => {
   const [viewSideBar, setViewSideBar] = useState(false);
   const { themeMenu } = useSelector((state) => state.main);
   const user = useSelector(selectCurrentUser);
-  const tabs = user.role === "super_admin" ? superAdminTabs : user.role === "admin" ? leftMenuTabs : clientTabs;
+  const tabs = leftMenuTabs
 
 
   return (
