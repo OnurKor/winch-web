@@ -27,7 +27,7 @@ const Home = lazy(() => import("../pages/admin/Home"));
 // const Devices = lazy(() => import("../pages/admin/DevicesList"));
 // const Beacon = lazy(() => import("../pages/admin/BeaconList"));
 // const Personel = lazy(() => import("../pages/Personel"));
-// const Users = lazy(() => import("../pages/Users"));
+const Users = lazy(() => import("../pages/Users"));
 // const AddUsers = lazy(() => import("../pages/AddUsers"));
 // const SmartLocations = lazy(() => import("../pages/SmartLocations"));
 // const Assets = lazy(() => import("../pages/Assets"));

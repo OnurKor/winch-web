@@ -1,0 +1,20 @@
+<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Kırmızı arka plan -->
+  <rect width="120" height="50" rx="25" ry="25" fill="red"/>
+  
+  <!-- Yanıp sönen beyaz "LIVE" metni -->
+  <text x="50" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="white" font-family="Arial">
+    <tspan>
+       
+      LIVE
+    </tspan>
+  </text>
+  
+  <!-- Yanıp sönen beyaz daire -->
+  <circle cx="100" cy="25" r="10" fill="white">
+    <animate attributeName="r" from="10" to="15" dur="0.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" from="1" to="0.5" dur="0.5s" repeatCount="indefinite" />
+  </circle>
+</svg>
+
+
