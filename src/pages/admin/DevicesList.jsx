@@ -1,29 +1,26 @@
 import React, { useState } from "react";
-import PageWrapper from "../components/PageWrapper";
-import AppHeader from "../components/AppHeader";
-import { useDeleteUserMutation, useGetAllUserQuery } from "../store/services/mainApi";
 import { useSelector } from "react-redux";
-import Table, { StatusPill } from "../components/table/NewTables";
-import TableButton from "../components/table/TableButton";
-import { selectCurrentUser } from "../store/services/authSlice";
 import { useNavigate } from "react-router-dom";
-import { use } from "react";
+import { useDeleteUserMutation, useGetAllDeviceQuery } from "../../store/services/mainApi";
+import TableButton from "../../components/table/TableButton";
+import Table, { StatusPill } from "../../components/table/NewTables";
+import PageWrapper from "../../components/PageWrapper";
+import AppHeader from "../../components/AppHeader";
+import { selectCurrentUser } from "../../store/services/authSlice";
 
-const Users = () => {
+const DevicesList = () => {
   const navigate = useNavigate();
   const user = useSelector(selectCurrentUser);
   const [deleteUser] = useDeleteUserMutation();
 
-  const {
-    data,
-    error,
-    isLoading: isUserLoading,
-  } = useGetAllUserQuery(user.institution_id);
+  const { data } = useGetAllDeviceQuery();
+  console.log("useGetAllDeviceQuery",data)
+
   const deleteFunc = (id) => {
     console.log(id, "plant delete");
     deleteUser({id});
   };
-
+console.log("burası çalısıyor")
   const columns = React.useMemo(
     () => [
       {
@@ -37,13 +34,13 @@ const Users = () => {
       },
 
       {
-        Header: "Username",
-        accessor: "username",
+        Header: "Mac Adresi",
+        accessor: "mac_address",
       },
 
       {
-        Header: "Role",
-        accessor: "role",
+        Header: "Plaka",
+        accessor: "plate",
       },
       {
         Header: "Status",
@@ -52,21 +49,24 @@ const Users = () => {
       },
     ],
     []
+
+
+  
   );
   return (
     <PageWrapper>
       <AppHeader
-        header="User Listing"
-        subHeader="Home - User List"
-        buttonName="Add User"
+        header="Devices Listing"
+        subHeader="Home - Devices List"
+        buttonName="Add Devices"
         func={() => navigate("/add_users")}
       />
 
       <div className="w-full">
-        {data && <Table columns={columns} data={[...data.ret]} />}
+        {data && <Table columns={columns} data={[...data?.content || []]} />}
       </div>
     </PageWrapper>
   );
 };
 
-export default Users;
+export default DevicesList;

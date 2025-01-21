@@ -5,6 +5,7 @@ import AnimatedImage from "../components/LogoAnimation";
 import Toast from "../components/toastMessage/Toast";
 // import Home from "../pages/admin/Home";
 import { useAuth } from "../hooks/useAuth";
+import DeviceList from "../pages/admin/DevicesList";
 
 const Login = lazy(() => import("../pages/Login"));
 
@@ -24,10 +25,10 @@ const Home = lazy(() => import("../pages/admin/Home"));
 // const Zone = lazy(() => import("../pages/admin/Zone"));
 // const ZoneHistory = lazy(() => import("../pages/admin/ZoneHistory"));
 // const RoomList = lazy(() => import("../pages/admin/RoomList"));
-// const Devices = lazy(() => import("../pages/admin/DevicesList"));
+const Devices = lazy(() => import("../pages/admin/DevicesList"));
 // const Beacon = lazy(() => import("../pages/admin/BeaconList"));
 // const Personel = lazy(() => import("../pages/Personel"));
-const Users = lazy(() => import("../pages/Users"));
+const Users = lazy(() => import("../pages/admin/Users"));
 // const AddUsers = lazy(() => import("../pages/AddUsers"));
 // const SmartLocations = lazy(() => import("../pages/SmartLocations"));
 // const Assets = lazy(() => import("../pages/Assets"));
@@ -44,6 +45,8 @@ const routesConfig = {
 
   admin: [
     { path: "/", element: <AddCampus />, index: true },
+    { path: "/devices_list", element: <Devices />},
+    { path: "/users", element: <Users /> },
   ],
 
 };

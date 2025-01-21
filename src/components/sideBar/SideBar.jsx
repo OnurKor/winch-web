@@ -153,7 +153,7 @@ const SideBar = ({ tabs }) => {
           onClick={handleLogOut}
           className="cursor-pointer"
         >
-          <Avatar username={user?.username} />
+          <Avatar username={user?.name} />
         </div>
         {menuSize !== "small" && (
           <div className="flex flex-col gap-[1px] items-center justify-center mb-2 mr-4">

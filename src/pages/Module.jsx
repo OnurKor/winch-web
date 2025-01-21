@@ -1,6 +1,6 @@
 // import React from 'react'
 // import unauthorization from '../assets/images/error_401.jpg'
-// import PageWrapper from '../components/PageWrapper'
+import Users from './admin/Users'
 
 // const Module = () => {
 //   return (
@@ -19,7 +19,9 @@ import React from 'react'
 
 const Module = () => {
   return (
-    <div>Module</div>
+    <div>
+      <h1>Module</h1>
+    </div>
   )
 }
 

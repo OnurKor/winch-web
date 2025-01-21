@@ -89,7 +89,7 @@ const Nav = () => {
                   >
                     <item.icon className="" size={26} />
                     {menuSize === "large" && (
-                      <p className="text-center mt-1 text-sm">{item.name}</p>
+                      <p className="text-center mt-1 text-sm">{item.name}s</p>
                     )}
                   </div>
                 );

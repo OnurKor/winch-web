@@ -23,8 +23,10 @@ export const authApi = createApi({
     }),
     logout: builder.mutation({
       query: () => ({
-        url: "/logout",
+        url: "/auth/logout",
         method: "delete",
+        body: {
+        },
         
       }),
       onQueryFulfilled: (data, { dispatch }) => {
