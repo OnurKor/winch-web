@@ -9,8 +9,7 @@ import { useGetAllDeviceQuery } from "../../store/services/mainApi";
 
 const Home = () => {
 
-  const { data } = useGetAllDeviceQuery();
-  console.log("useGetAllDeviceQuery",data)
+
   return (
     <div className="flex h-full w-full">
       <div className="h-full">

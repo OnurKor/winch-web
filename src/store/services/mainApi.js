@@ -95,14 +95,14 @@ export const mainApi = createApi({
     }),
     getAllDevice: builder.query({
       query: () => ({
-        url: `/devices?all_device=163`,
+        url: `/devices?all_device=1`,
         method: "get",
       }),
       providesTags: ["Device"],
     }),
-    getUser: builder.query({
-      query: (id) => ({
-        url: `/users/${id}`,
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `/users`,
         method: "get",
       }),
       providesTags: ["User"],
@@ -511,6 +511,7 @@ export const mainApi = createApi({
 export const {
   useGetCampusMutation,
   useGetAllDeviceQuery,
+  useGetAllUsersQuery,
   useGetUsersMutation,
   useDeleteUserMutation,
   useGetUserQuery,
