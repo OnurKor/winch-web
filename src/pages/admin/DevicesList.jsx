@@ -13,7 +13,9 @@ const DevicesList = () => {
   const user = useSelector(selectCurrentUser);
   const [deleteUser] = useDeleteUserMutation();
 
-  const { data } = useGetAllDeviceQuery();
+  const { data } = useGetAllDeviceQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   console.log("useGetAllDeviceQuery",data)
 
   const deleteFunc = (id) => {
