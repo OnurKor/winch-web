@@ -29,7 +29,7 @@ const Devices = lazy(() => import("../pages/admin/DevicesList"));
 // const Beacon = lazy(() => import("../pages/admin/BeaconList"));
 // const Personel = lazy(() => import("../pages/Personel"));
 const Users = lazy(() => import("../pages/admin/Users"));
-// const AddUsers = lazy(() => import("../pages/AddUsers"));
+const AddUsers = lazy(() => import("../pages/AddUsers"));
 // const SmartLocations = lazy(() => import("../pages/SmartLocations"));
 // const Assets = lazy(() => import("../pages/Assets"));
 // const CarManage = lazy(() => import("../pages/CarManage"));
@@ -47,23 +47,23 @@ const routesConfig = {
     { path: "/", element: <AddCampus />, index: true },
     { path: "/devices_list", element: <Devices />},
     { path: "/users", element: <Users /> },
+    { path: "/add_users", element: < AddUsers/> },
   ],
 
 };
 const AppRouter = () => {
    const user = useAuth();
    console.log("user", user);
-    const userRoutes = user ? routesConfig["admin"] : [];
-
+   const userRoutes = user?.role ? routesConfig[user.role] : [];
   return (
     <Suspense fallback={<AnimatedImage />}>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRouter />}>
+        <Route path="/" element={<PrivateRouter allowedRoles={[user?.role]} />}>
           <Route
             path="/"
             element={
-                user ? (
+              user?.role === "admin" ? (
                 <Home />
               ) : null
             }

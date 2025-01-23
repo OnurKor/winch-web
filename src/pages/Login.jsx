@@ -10,6 +10,8 @@ import { setCredentials } from "../store/services/authSlice";
 import Cookies from "universal-cookie";
 import Input from "../components/formElement/Input";
 import OutlinedBaseBtn from "../components/buttons/OutlinedBaseBtn";
+import { toast } from "react-toastify";
+import { toastErrorNotify } from "../helper/Toastfy";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,13 +27,19 @@ const Login = () => {
         const { access_token, user } = data.content;
         
         // Redux'a kaydet
-        dispatch(
-          setCredentials({
-            bearer: { access: access_token },
-            user,
-          })
-        );
-        navigate("/");
+
+        if(user.role === "admin"){
+          dispatch(
+            setCredentials({
+              bearer: { access: access_token },
+              user,
+            })
+          );
+        navigate("/")
+
+        } else{
+          toastErrorNotify("Yetkisiz Giriş")
+        }
       } else {
         console.error("Login failed:", data.error_message);
       }

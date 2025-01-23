@@ -1,0 +1,29 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- En dıştaki yuvarlak, en açık mavi -->
+  <circle cx="100" cy="100" r="80" fill="#B0E0E6">
+    <animate
+      attributeName="fill"
+      values="#B0E0E6;#87CEEB;#B0E0E6"
+      dur="3s"
+      repeatCount="indefinite" />
+  </circle>
+
+  <!-- Ortadaki yuvarlak, orta mavi -->
+  <circle cx="100" cy="100" r="55" fill="#87CEEB">
+    <animate
+      attributeName="fill"
+      values="#87CEEB;#4682B4;#87CEEB"
+      dur="3s"
+      repeatCount="indefinite" />
+  </circle>
+
+  <!-- En içteki yuvarlak, en koyu mavi -->
+  <circle cx="100" cy="100" r="30" fill="#4682B4">
+    <animate
+      attributeName="fill"
+      values="#4682B4;#B0E0E6;#4682B4"
+      dur="3s"
+      repeatCount="indefinite" />
+  </circle>
+</svg>
+
