@@ -514,7 +514,6 @@ export const {
   useGetAllUsersQuery,
   useGetUsersMutation,
   useDeleteUserMutation,
-  useGetUserQuery,
   useAddUserMutation,
   useUpdateUserMutation,
   useGetAssetsMutation,

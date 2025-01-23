@@ -16,10 +16,10 @@ const PrivateRouter = ({ allowedRoles }) => {
     return <Navigate to="/login" />;
   }
 
-  // if (!allowedRoles.includes(user.role)) {
-  //   console.log("unothorized")
-  //   return <Navigate to="/unauthorized" />;
-  // }
+  if (!allowedRoles.includes(user.role)) {
+    console.log("unothorized")
+    return <Navigate to="/unauthorized" />;
+  }
 
   return <Outlet />;
 };
