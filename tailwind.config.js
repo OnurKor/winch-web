@@ -84,7 +84,7 @@ module.exports = {
         secondary: "#697488",
         darkkozy: "#002E63",
         kozy: "#163C8C",
-        lightkozy: "#00BDD4",
+        lightkozy: "#429335",
         whitekozy: "#FFFFFF",
         greykozy: "#F5F5F5",
         kozydarkgrey: "#DDDDDD",
