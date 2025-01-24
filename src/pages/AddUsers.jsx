@@ -22,7 +22,6 @@ export default function AddUsers() {
   const user = useSelector(selectCurrentUser);
   console.log(user.institution_id, "userxxxx");
   const [userInfo, setUserInfo] = useState({
-    step: 1,
     username: "",
     lastname: "",
     firstname: "",
@@ -32,111 +31,33 @@ export default function AddUsers() {
     id: "",
   });
 
-  // const {
-  //   data: isUser,
-  //   error,
-  //   isLoading: isUserLoading,
-  // } = useGetUserQuery(id, {
-  //   skip: !id, // `id` yoksa API çağrısını atlar
-  // });
 
   const [updateUser] = useUpdateUserMutation(id);
-  const [addUser] = useAddUserMutation();
+  const [addUser] = useAddUserMutation()
 
-  // useEffect(() => {
-  //   if (isUser?.ret) {
-  //     const { username, lastname, firstname, description, status, role, id } =
-  //       isUser.ret;
 
-  //     setUserInfo({
-  //       step: 1,
-  //       username: username || "",
-  //       lastname: lastname || "",
-  //       firstname: firstname || "",
-  //       description: description || "",
-  //       status: status || 1,
-  //       role: role || "admin",
-  //       id: id || "",
-  //     });
-  //   }
-  // }, [isUser]);
-
-  const [profileImage, setProfileImage] = useState(userImage);
-
-  const [hover, setHover] = useState(false);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
+  
   return (
     <>
       <div className="flex flex-col items-center border rounded-lg shadow-md p-6 bg-white m-8 ">
-        <div
-          className="relative w-24 h-24 rounded-full border-4 border-lightkozy overflow-hidden group transition-transform duration-300 ease-in-out mb-6"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          {/* Profil Resmi */}
-          <img
-            src={profileImage}
-            alt="User profile"
-            className="w-full h-full object-cover"
-          />
-
-          {/* Hover Efekti */}
-
-          {hover && (
-            <div className="absolute bottom-[-100%] left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center  group-hover:bottom-0 z-10">
-              <label
-                htmlFor="file-input"
-                className="text-white text-sm font-medium cursor-pointer hover:underline"
-              >
-                Change
-              </label>
-            </div>
-          )}
-
-          {/* Dosya Yükleme */}
-          <input
-            id="file-input"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageChange}
-          />
-        </div>
 
         <Formik
           enableReinitialize
           initialValues={userInfo}
           onSubmit={async (values, actions) => {
             console.log(values);
-            const { step, lastStep, ...filteredValues } = values;
 
             try {
               if (id) {
                 const updatedUser = await updateUser({
                   id: id, // Kullanıcının ID'si
-                  body: filteredValues, // Güncellenecek kullanıcı verisi
+                  body: values, // Güncellenecek kullanıcı verisi
                 }).unwrap(); // unwrap ile hata fırlatmalarını yakalayabilirsiniz
                 console.log("User updated successfully", updatedUser);
               } else {
-                console.log({
-                  institution_id: user.institution_id,
-                  ...filteredValues,
-                });
                 const addUserResponse = await addUser({
                   body: {
-                    institution_id: user.institution_id,
-                    ...filteredValues,
+                    ...values,
                   },
                 }).unwrap();
                 console.log("User added successfully", addUserResponse);
