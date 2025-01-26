@@ -4,7 +4,6 @@ import deleteIcon from "../../assets/icons/delete.svg";
 import matchIcon from "../../assets/icons/match.svg";
 import liveIcon from "../../assets/logo/live.svg";
 import navigateIcon from "../../assets/icons/navigate.svg";
-
 import add from "../../assets/icons/add.svg";
 import viewNav from "../../assets/icons/view.svg";
 import { useNavigate } from "react-router-dom";
