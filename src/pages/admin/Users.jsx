@@ -18,7 +18,7 @@ const Users = () => {
   console.log("useGetAllUsersQuery",data)
 
   const deleteFunc = (id) => {
-    console.log(id, "plant delete");
+    console.log(id, "user delete");
     deleteUser({id});
   };
 console.log("burası çalısıyor")
