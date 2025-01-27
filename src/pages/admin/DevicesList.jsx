@@ -28,7 +28,7 @@ console.log("burası çalısıyor")
       {
         Header: "Actions",
         accessor: "actions",
-        Cell: ({ row }) => <TableButton row={row} navigateUrl={"/add_users"} deleteFunc={deleteFunc}/>,
+        Cell: ({ row }) => <TableButton row={row} navigateUrl={"/add_device"} deleteFunc={deleteFunc}/>,
       },
       {
         Header: "Id",
@@ -61,7 +61,7 @@ console.log("burası çalısıyor")
         header="Devices Listing"
         subHeader="Home - Devices List"
         buttonName="Add Devices"
-        func={() => navigate("/add_users")}
+        func={() => navigate("/add_device")}
       />
 
       <div className="w-full">
