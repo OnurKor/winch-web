@@ -50,10 +50,7 @@ const TableButton = ({
   const [viewItem, setViewItem] = useState(false);
 
   const handleEdit = () => {
-    console.log(row.original);
-    setEditModal(true);
-    navigateUrl && navigate(`${navigateUrl}/${row.original.id}`);
-    setEditData(row.original);
+    navigateUrl && navigate(`${navigateUrl}?id=${row.original.id}`);
   };
   const handleExit = () => {
     console.log(row.original);

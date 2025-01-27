@@ -1,46 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useSearchParams } from "react-router-dom";
 import Input from "../components/formElement/Input";
 import InputTel from "../components/formElement/InputTel";
 import { Form, Formik } from "formik";
-import classNames from "classnames";
 import OutlinedBaseBtn from "../components/buttons/OutlinedBaseBtn";
-import ButtonBox from "../components/formElement/ButtonBox";
-import { selectCurrentUser } from "../store/services/authSlice";
-import TextArea from "../components/formElement/TextArea";
 import {
   useAddUserMutation,
-  useGetUsersMutation,
+  useGetSingleUserQuery,
   useUpdateUserMutation,
 } from "../store/services/mainApi";
-import userImage from "../assets/logo/blank.png";
-import { last } from "lodash";
 
 export default function AddUsers() {
-  const { id } = useParams();
-  const user = useSelector(selectCurrentUser);
-  console.log(user.institution_id, "userxxxx");
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-    lastname: "",
-    firstname: "",
-    description: "",
-    status: 1,
-    role: "admin",
-    id: "",
-  });
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id") || null; // Eğer "id" yoksa null ata
 
+  console.log(id, "id");
+
+  const { data: userDetail } = useGetSingleUserQuery(id, {
+    skip: !id || id === "null",
+  });
+  
+  console.log(userDetail, "userDetail");
+  
+  const [userInfo, setUserInfo] = useState({
+    password: "",
+    email: "",
+    name: "",
+    surname: "",
+    phone: null,
+  });
+  
+  useEffect(() => {
+    if (userDetail) {
+      setUserInfo({
+        password: userDetail.content?.password || "",
+        email: userDetail.content?.email || "",
+        name: userDetail.content?.name || "",
+        surname: userDetail.content?.surname || "",
+        phone: userDetail.content?.phone || null,
+      });
+    }
+  }, [userDetail]);
+  
 
   const [updateUser] = useUpdateUserMutation(id);
-  const [addUser] = useAddUserMutation()
+  const [addUser] = useAddUserMutation();
 
-
-  
   return (
-    <>
-      <div className="flex flex-col items-center border rounded-lg shadow-md p-6 bg-white m-8 ">
-
+      <div className="flex flex-col items-center border rounded-lg shadow-md p-6 bg-white m-8 mt-40">
         <Formik
           enableReinitialize
           initialValues={userInfo}
@@ -71,56 +78,19 @@ export default function AddUsers() {
             <Form onSubmit={handleSubmit} className=" w-full">
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col md:flex-row gap-2">
-                  <Input name="firstname" label="First Name" />
-                  <Input name="lastname" label="Last Name" />
+                  <Input name="name" label="Ad " />
+                  <Input name="surname" label="Soyad" />
                 </div>
-                <div className="flex flex-col md:flex-row gap-2">
-                  <Input name="username" label="User Name" />
 
-                  <InputTel name="phone" label="Phone" />
-                </div>
                 <div className="flex flex-col md:flex-row gap-2">
                   <Input name="email" label="Email" />
-                  <Input name="password" label="Password" />
+                  <Input name="password" label="Parola Belirleyiniz..." />
                 </div>
-                <TextArea name="description" label="Description" />
-
-                <div className="flex gap-4  flex-col md:flex-row ">
-                  <div className="flex gap-4 mt-4 flex-col md:flex-row">
-                    <h4 className="font-medium text-secondary">Status: </h4>
-                    <div className="flex flex-col gap-2 xl:flex-row">
-                      <ButtonBox small name="status" label="Active" value={1} />
-                      <ButtonBox
-                        small
-                        name="status"
-                        label="Inactive"
-                        value={0}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex gap-4 mt-4  flex-col md:flex-row">
-                    <h4 className="font-medium text-secondary">Rol: </h4>
-                    <div className="flex flex-col gap-2 xl:flex-row flex-wrap">
-                      <ButtonBox small name="role" label="Admin" value="admin" />
-                      <ButtonBox
-                        small
-                        name="role"
-                        label="Süper Admin"
-                        value="super_admin"
-                      />
-                      <ButtonBox
-                        small
-                        name="role"
-                        label="Client"
-                        value="client"
-                      />
-                      <ButtonBox
-                        small
-                        name="role"
-                        label="Security"
-                        value="security"
-                      />
-                    </div>
+                <div className="flex flex-col md:flex-row gap-2">
+                  <InputTel name="phone" label="Phone" />
+                  
+                  <div className="invisible w-full" >
+                    <Input name="hidden" label=""/>
                   </div>
                 </div>
               </div>
@@ -137,6 +107,6 @@ export default function AddUsers() {
           )}
         </Formik>
       </div>
-    </>
+
   );
 }

@@ -192,55 +192,55 @@ export function ViewOnGoogleMap({ row, setViewGoogleMap, setCoordinates }) {
     </div>
   );
 }
-export function ViewOnMap({
-  row,
-  user,
-  setSketch,
-  setIsMapView,
-  setViewMap,
-  setViewRoom,
-}) {
-  const [openModal, setOpenModal] = useState(false);
-  const [getPlaceId, { data: isPlaceId, isLoading: isLoadingId }] =
-    useListPlacesMutation();
-  const [getRoom, { data: isRoom, isLoading: isRoomLoading }] =
-    useListLocationMutation();
+// export function ViewOnMap({
+//   row,
+//   user,
+//   setSketch,
+//   setIsMapView,
+//   setViewMap,
+//   setViewRoom,
+// }) {
+//   const [openModal, setOpenModal] = useState(false);
+//   const [getPlaceId, { data: isPlaceId, isLoading: isLoadingId }] =
+//     useListPlacesMutation();
+//   const [getRoom, { data: isRoom, isLoading: isRoomLoading }] =
+//     useListLocationMutation();
 
-  const handleViewOnMap = async (row) => {
-    console.log(row.original);
+//   const handleViewOnMap = async (row) => {
+//     console.log(row.original);
 
-    const isPlaceResponse = await getPlaceId({
-      plant_id: row.original.plant_id,
-    }).unwrap();
-    console.log(isPlaceResponse.ret[0].image_url, "cevap");
-    setSketch(isPlaceResponse.ret[0].image_url);
+//     const isPlaceResponse = await getPlaceId({
+//       plant_id: row.original.plant_id,
+//     }).unwrap();
+//     console.log(isPlaceResponse.ret[0].image_url, "cevap");
+//     setSketch(isPlaceResponse.ret[0].image_url);
 
-    try {
-      const isRoomResponse = await getRoom({
-        institution_id: row.original.institution_id,
-        location_type: "room",
-      }).unwrap();
+//     try {
+//       const isRoomResponse = await getRoom({
+//         institution_id: row.original.institution_id,
+//         location_type: "room",
+//       }).unwrap();
 
-      const filteredRooms = isRoomResponse.ret.filter(
-        (item) => item.place_id == +row.original.id
-      );
-      if (filteredRooms.length > 0) {
-        console.log("URDAYIM");
-        setViewRoom(filteredRooms);
-        setViewMap(true);
-        setIsMapView(true);
-      }
-    } catch (error) {
-      console.error("Error fetching room data", error);
-    }
-  };
+//       const filteredRooms = isRoomResponse.ret.filter(
+//         (item) => item.place_id == +row.original.id
+//       );
+//       if (filteredRooms.length > 0) {
+//         console.log("URDAYIM");
+//         setViewRoom(filteredRooms);
+//         setViewMap(true);
+//         setIsMapView(true);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching room data", error);
+//     }
+//   };
 
-  return (
-    <div>
-      <Button onClick={() => handleViewOnMap(row)}>View on Maps</Button>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <Button onClick={() => handleViewOnMap(row)}>View on Maps</Button>
+//     </div>
+//   );
+// }
 
 export function AvatarCell({ value, column, row }) {
   return (
