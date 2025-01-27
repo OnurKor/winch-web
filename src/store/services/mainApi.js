@@ -81,7 +81,14 @@ export const mainApi = createApi({
     }),
     getAllDevice: builder.query({
       query: () => ({
-        url: `/devices?all_device=1`,
+        url: `/devices`,
+        method: "get",
+      }),
+      providesTags: ["Device"],
+    }),
+    getSingleDevice: builder.query({
+      query: (id) => ({
+        url: `/devices/${id}`,
         method: "get",
       }),
       providesTags: ["Device"],
@@ -99,6 +106,14 @@ export const mainApi = createApi({
         method: "get",
       }),
     }),
+    addDevice: builder.mutation({
+      query: ({  body }) => ({
+        url: `/devices`,
+        method: "Post",
+        body,
+      }),
+      invalidatesTags: ["Device"],
+    }),
     
   }),
 });
@@ -109,6 +124,8 @@ export const {
   useDeleteUserMutation,
   useAddUserMutation,
   useUpdateUserMutation,
-  useGetSingleUserQuery
+  useGetSingleUserQuery,
+  useAddDeviceMutation,
+  useGetSingleDeviceQuery,
 
 } = mainApi;
