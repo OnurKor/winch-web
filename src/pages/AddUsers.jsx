@@ -17,7 +17,7 @@ export default function AddUsers() {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
-  const id = searchParams.get("id") || 0; // Eğer "id" yoksa null ata
+  const id = searchParams.get("id") || 0; 
 
   console.log(id, "id");
 
