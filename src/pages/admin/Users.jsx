@@ -7,7 +7,6 @@ import Table, { StatusPill } from "../../components/table/NewTables";
 import TableButton from "../../components/table/TableButton";
 import { selectCurrentUser } from "../../store/services/authSlice";
 import { useNavigate } from "react-router-dom";
-import { use } from "react";
 
 const Users = () => {
   const navigate = useNavigate();
