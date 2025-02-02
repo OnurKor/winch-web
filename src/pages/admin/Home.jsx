@@ -4,7 +4,6 @@ import Footer from "../../components/Footer";
 import { leftMenuTabs } from "../../tabs/leftMenuTabs";
 import Nav from "../../components/sideBar/Nav";
 import SideBar from "/Users/onurkordogan/Desktop/winch-web/src/components/sideBar/SideBar";
-import { useGetAllDeviceQuery } from "../../store/services/mainApi";
 
 
 const Home = () => {
