@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Input from "../components/formElement/Input";
-import InputTel from "../components/formElement/InputTel";
 import { Form, Formik } from "formik";
 import OutlinedBaseBtn from "../components/buttons/OutlinedBaseBtn";
 import {
