@@ -111,9 +111,9 @@ export default function AddDevice() {
             </Form>
           )}
         </Formik>
-        { id &&   <div>
+        {/* { id &&   <div>
             Cihaz Sahibi: {deviceDetail?.content?.owner}
-                </div>}
+                </div>} */}
 
       </div>
 

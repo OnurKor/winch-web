@@ -52,7 +52,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 export const mainApi = createApi({
   reducerPath: "mainApi",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["User", "Device"],
+  tagTypes: ["User", "Device", "Device_Detail"],
   endpoints: (builder) => ({
 
 
@@ -72,6 +72,7 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    
     deleteUser: builder.mutation({
       query: ({ id }) => ({
         url: `/users/${id}`,
@@ -79,6 +80,7 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+
     getAllDevice: builder.query({
       query: () => ({
         url: `/devices`,
@@ -86,13 +88,15 @@ export const mainApi = createApi({
       }),
       providesTags: ["Device"],
     }),
+
     getSingleDevice: builder.query({
       query: (id) => ({
-        url: `/devices/${id}`,
+        url: `/devices/${id}?owner_detail=1&users_detail=1`,
         method: "get",
       }),
-      providesTags: ["Device"],
+      providesTags: ["Device_Detail"],
     }),
+    
     getAllUsers: builder.query({
       query: () => ({
         url: `/users`,
@@ -110,6 +114,14 @@ export const mainApi = createApi({
       query: ({  body }) => ({
         url: `/devices`,
         method: "Post",
+        body,
+      }),
+      invalidatesTags: ["Device"],
+    }),
+    updateDevice: builder.mutation({
+      query: ({  body, id  }) => ({
+        url: `/devices/${id}`,
+        method: "Put",
         body,
       }),
       invalidatesTags: ["Device"],
