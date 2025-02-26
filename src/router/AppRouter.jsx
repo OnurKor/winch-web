@@ -6,7 +6,7 @@ import Toast from "../components/toastMessage/Toast";
 // import Home from "../pages/admin/Home";
 import { useAuth } from "../hooks/useAuth";
 import DeviceList from "../pages/admin/DevicesList";
-import AddDevice from "../pages/AddDevice";
+import AddUpdateDevice from "../pages/AddUpdateDevice";
 
 const Login = lazy(() => import("../pages/Login"));
 
@@ -49,7 +49,7 @@ const routesConfig = {
     { path: "/devices_list", element: <Devices />},
     { path: "/users", element: <Users /> },
     { path: "/add_users", element: < AddUsers/> },
-    { path: "/add_device", element: < AddDevice/> },
+    { path: "/add_device", element: < AddUpdateDevice/> },
   ],
 
 };
