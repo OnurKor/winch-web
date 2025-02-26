@@ -11,7 +11,7 @@ import {
 import { toastErrorNotify, toastSuccessNotify } from "../helper/Toastfy";
 import { div } from "framer-motion/client";
 
-export default function AddDevice() {
+export default function AddUpdateDevice() {
 
 
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function AddDevice() {
     skip: !id || id === "null",
   });
   
-  console.log(deviceDetail, "userDetail");
+  console.log(deviceDetail, "deviceDetail");
   
   const [deviceInfo, setDeviceInfo] = useState({
     mac_address: "",
@@ -47,7 +47,8 @@ export default function AddDevice() {
   const [addDevice] = useAddDeviceMutation();
 
   return (
-      <div className="flex flex-col items-center border rounded-lg shadow-md p-6 bg-white m-8 mt-40">
+    <div>
+      <div className="flex flex-col items-center border rounded-lg shadow-md p-6 bg-white m-8 mt-4">
         <Formik
           enableReinitialize
           initialValues={deviceInfo}
@@ -111,11 +112,26 @@ export default function AddDevice() {
             </Form>
           )}
         </Formik>
-        {/* { id &&   <div>
-            Cihaz Sahibi: {deviceDetail?.content?.owner}
-                </div>} */}
 
       </div>
-
+      { id &&  
+      <div className="flex flex-col border rounded-lg shadow-md p-6 bg-white m-8 mt-4">
+          <div className="font-bold text-lg text-center">
+            Cihaz Sahibi
+          </div>
+          <div className="flex flex-col gap-2">
+            <p><strong>Adı Soyadı:</strong> {deviceDetail?.content?.owner?.name} {deviceDetail?.content?.owner?.surname}</p> 
+            <p><strong>Email Adresi:</strong> {deviceDetail?.content?.owner?.email} </p> 
+            <p><strong>Telefon Numarası:</strong> {deviceDetail?.content?.owner?.phone}</p> 
+          </div>
+          <div className="flex justify-end mt-6">
+                <OutlinedBaseBtn
+                  title="Cihaz Sahibini Kaldır"
+                  type="submit"
+                  className="px-6 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md"
+                />
+            </div>
+      </div>}
+    </div>
   );
 }
