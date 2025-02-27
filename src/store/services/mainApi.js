@@ -126,6 +126,14 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ["Device"],
     }),
+
+    removeUser: builder.mutation({
+      query: ({ id }) => ({
+        url: `/users/${id}`,
+        method: "delete",
+      }),
+      invalidatesTags: ["User"],
+    }),
     
   }),
 });
@@ -139,5 +147,6 @@ export const {
   useGetSingleUserQuery,
   useAddDeviceMutation,
   useGetSingleDeviceQuery,
+  useUpdateDeviceMutation,
 
 } = mainApi;
