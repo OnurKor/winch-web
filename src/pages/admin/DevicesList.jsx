@@ -51,9 +51,6 @@ console.log("burası çalısıyor")
       },
     ],
     []
-
-
-  
   );
   return (
     <PageWrapper>
