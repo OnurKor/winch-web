@@ -102,7 +102,7 @@ export default function AddUpdateDevice() {
               if (id) {
                 const updateDeviceResponse = await updateDevice({
                   id: id, // Kullanıcının ID'si
-                  body: values, // Güncellenecek kullanıcı verisi
+                  body: values.plate, // Güncellenecek kullanıcı verisi
                 }).unwrap(); // unwrap ile hata fırlatmalarını yakalayabilirsiniz
                 console.log("User updated successfully", updateDevice);
                 if (updateDeviceResponse.success) {
