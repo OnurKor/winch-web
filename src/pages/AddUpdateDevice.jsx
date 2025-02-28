@@ -102,14 +102,14 @@ export default function AddUpdateDevice() {
               if (id) {
                 const updateDeviceResponse = await updateDevice({
                   id: id, // Kullanıcının ID'si
-                  body: values.plate, // Güncellenecek kullanıcı verisi
+                  body: values, // Güncellenecek kullanıcı verisi
                 }).unwrap(); // unwrap ile hata fırlatmalarını yakalayabilirsiniz
                 console.log("User updated successfully", updateDevice);
                 if (updateDeviceResponse.success) {
-                  toastSuccessNotify("Kullanıcı başarıyla güncellendi");
+                  toastSuccessNotify("Plaka başarıyla güncellendi");
                   navigate("/devices_list");
                 } else {
-                  toastErrorNotify("Kullanıcı güncellenirken bir hata oluştu");
+                  toastErrorNotify("Plaka güncellenirken bir hata oluştu");
                 }
               } else {
                 const addDeviceResponse = await addDevice({
