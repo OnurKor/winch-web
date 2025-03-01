@@ -45,19 +45,19 @@ export default function AddUpdateDevice() {
 
   const [updateDevice] = useUpdateDeviceMutation(id);
   const [addDevice] = useAddDeviceMutation();
-  // const [deleteUser] = useDeleteUserMutation();
+  const [removeUser] = useremoveUserMutation();
 
-  // const deleteFunc = (id) => {
-  //   console.log(id, "user delete");
-  //   deleteUser({id});
-  // };
+  const deleteFunc = (id) => {
+    console.log(id, "user delete");
+    removeUser({id});
+  };
 
   const columns = React.useMemo(
     () => [
       {
         Header: "Actions",
         accessor: "actions",
-        // Cell: ({ row }) => <TableButton row={row} navigateUrl={"/add_users"} deleteFunc={deleteFunc}/>,
+        Cell: ({ row }) => <TableButton row={row} deleteFunc={deleteFunc}/>,
       },
       {
         Header: "Id",
@@ -136,7 +136,7 @@ export default function AddUpdateDevice() {
             <Form onSubmit={handleSubmit} className=" w-full">
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col md:flex-row gap-2">
-                  <Input name="mac_address" label="Mac Adres" />
+                  <Input name="mac_address" label="Mac Adres" disabled={Boolean(id)}/>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-2">
