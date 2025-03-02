@@ -7,7 +7,9 @@ import {
   useAddDeviceMutation,
   useGetSingleDeviceQuery,
   useUpdateUserMutation,
-  useUpdateDeviceMutation
+  useUpdateDeviceMutation,
+  useRemoveUserMutation,
+  useRemoveOwnerMutation,
 } from "../store/services/mainApi";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/Toastfy";
 import { div } from "framer-motion/client";
@@ -45,30 +47,51 @@ export default function AddUpdateDevice() {
 
   const [updateDevice] = useUpdateDeviceMutation(id);
   const [addDevice] = useAddDeviceMutation();
-  const [removeUser] = useremoveUserMutation();
+  const [removeUser] = useRemoveUserMutation();
 
-  const deleteFunc = (id) => {
-    console.log(id, "user delete");
-    removeUser({id});
+  const deleteFunc = async (userId) => {
+    try {
+      await removeUser({ deviceId: id, userId }).unwrap();
+      toastSuccessNotify("Kullanıcı başarıyla silindi.");
+    } catch (error) {
+      console.error("Kullanıcı silme hatası:", error);
+      toastErrorNotify("Kullanıcı silinirken bir hata oluştu.");
+    }
   };
 
-  const columns = React.useMemo(
+  const [removeOwner] = useRemoveOwnerMutation();
+
+const handleRemoveOwner = async () => {
+  try {
+    const body = {
+      mac_address: deviceInfo.mac_address, // Mevcut cihaz bilgisi
+      plate: deviceInfo.plate, // Mevcut plaka bilgisi
+    };
+
+    await removeOwner({ deviceId: id, body }).unwrap();
+    toastSuccessNotify("Cihaz sahibi başarıyla kaldırıldı.");
+  } catch (error) {
+    console.error("Cihaz sahibi kaldırma hatası:", error);
+    toastErrorNotify("Cihaz sahibi kaldırılırken bir hata oluştu.");
+  }
+};
+
+  
+  const columns = useMemo(
     () => [
       {
         Header: "Actions",
         accessor: "actions",
-        Cell: ({ row }) => <TableButton row={row} deleteFunc={deleteFunc}/>,
+        Cell: ({ row }) => <TableButton row={row} deleteFunc={deleteFunc} />,
       },
       {
         Header: "Id",
         accessor: "id",
       },
-
       {
         Header: "Name",
         accessor: "name",
       },
-
       {
         Header: "Surname",
         accessor: "surname",
@@ -85,6 +108,7 @@ export default function AddUpdateDevice() {
     ],
     []
   );
+  
 
   return (
     <div>
@@ -188,7 +212,8 @@ export default function AddUpdateDevice() {
             <div className="flex justify-end mt-6">
               <OutlinedBaseBtn
                 title="Cihaz Sahibini Kaldır"
-                type="submit"
+                type="button"
+                onClick={handleRemoveOwner} // API çağrısını burada yapıyoruz
                 className="px-6 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md"
               />
             </div>

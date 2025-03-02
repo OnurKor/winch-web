@@ -128,12 +128,22 @@ export const mainApi = createApi({
     }),
 
     removeUser: builder.mutation({
-      query: ({ id }) => ({
-        url: `/users/${id}`,
+      query: ({ deviceId, userId }) => ({
+        url: `/devices/${deviceId}/device_user/${userId}`,
         method: "delete",
       }),
-      invalidatesTags: ["User"],
+      invalidatesTags: ["Device_Detail"], // Silme işlemi sonrası tabloyu güncelle
     }),
+
+    removeOwner: builder.mutation({
+      query: ({ deviceId, body }) => ({
+        url: `/devices/${deviceId}/device_owner`,
+        method: "delete",
+        body, // API `mac_address` ve `plate` bilgilerini istiyor
+      }),
+      invalidatesTags: ["Device_Detail"], // Silme sonrası cihaz bilgilerini güncelle
+    }),
+    
     
   }),
 });
@@ -148,5 +158,7 @@ export const {
   useAddDeviceMutation,
   useGetSingleDeviceQuery,
   useUpdateDeviceMutation,
+  useRemoveUserMutation,
+  useRemoveOwnerMutation,
 
 } = mainApi;
