@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDeleteUserMutation, useGetAllDeviceQuery } from "../../store/services/mainApi";
+import {
+  useDeleteUserMutation,
+  useGetAllDeviceQuery,
+} from "../../store/services/mainApi";
 import TableButton from "../../components/table/TableButton";
 import Table, { StatusPill } from "../../components/table/NewTables";
 import PageWrapper from "../../components/PageWrapper";
@@ -16,19 +19,25 @@ const DevicesList = () => {
   const { data } = useGetAllDeviceQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-  console.log("useGetAllDeviceQuery",data)
+  console.log("useGetAllDeviceQuery", data);
 
   const deleteFunc = (id) => {
     console.log(id, "plant delete");
-    deleteUser({id});
+    deleteUser({ id });
   };
-console.log("burası çalısıyor")
+  console.log("burası çalısıyor");
   const columns = React.useMemo(
     () => [
       {
         Header: "Actions",
         accessor: "actions",
-        Cell: ({ row }) => <TableButton row={row} navigateUrl={"/add_device"} deleteFunc={deleteFunc}/>,
+        Cell: ({ row }) => (
+          <TableButton
+            row={row}
+            navigateUrl={"/add_device"}
+            deleteFunc={deleteFunc}
+          />
+        ),
       },
       {
         Header: "Id",
@@ -62,7 +71,7 @@ console.log("burası çalısıyor")
       />
 
       <div className="w-full">
-        {data && <Table columns={columns} data={[...data?.content || []]} />}
+        {data && <Table columns={columns} data={[...(data?.content || [])]} />}
       </div>
     </PageWrapper>
   );
