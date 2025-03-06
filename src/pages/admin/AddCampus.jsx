@@ -11,8 +11,6 @@
 // import { selectCurrentUser } from "../../store/services/authSlice";
 // import { useGetAllUserQuery, useGetUsersMutation } from "../../store/services/mainApi";
 
-
-
 // const summaryData = [
 //   {
 //     device_id: 4,
@@ -58,12 +56,12 @@
 
 // const TreeItem = ({ item, data }) => {
 //   const [isOpen, setIsOpen] = useState(false);
- 
+
 //   const toggleOpen = () => setIsOpen(!isOpen);
 
 //   // Alt öğeleri al
 //   const children = data.filter((child) => child.parent_id === item.id);
-  
+
 //   return (
 //     <div className="ml-5">
 //       <div
@@ -86,7 +84,7 @@
 //           ))}
 //         </div>
 //       )}
-     
+
 //     </div>
 //   );
 // };
@@ -228,30 +226,28 @@
 //   return (
 //     <PageWrapper>
 //       szdf
-     
+
 //       <div className="p-4">
 //         {rootItems.map((item) => (
 //           <TreeItem key={item.id} item={item} data={data} />
 //         ))}
 //       </div> <AnimatedBarChart data={connections} />
 //       <SummaryChart summary={summaryData} />
-      
+
 //       <MainTabs tabs={tabs} />
 //       <TwoMonths
 //                   setOpenModal={setOpenDatePicker}
-                  
+
 //                 />
 // SADIK
 //     </PageWrapper>
 //   );
 // }
 
-import React from 'react'
+import React from "react";
 
 const AddCampus = () => {
-  return (
-    <div>AddCampus</div>
-  )
-}
+  return <div>AddCampus</div>;
+};
 
-export default AddCampus
+export default AddCampus;
