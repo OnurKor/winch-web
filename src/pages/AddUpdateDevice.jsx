@@ -61,22 +61,21 @@ export default function AddUpdateDevice() {
 
   const [removeOwner] = useRemoveOwnerMutation();
 
-const handleRemoveOwner = async () => {
-  try {
-    const body = {
-      mac_address: deviceInfo.mac_address, // Mevcut cihaz bilgisi
-      plate: deviceInfo.plate, // Mevcut plaka bilgisi
-    };
+  const handleRemoveOwner = async () => {
+    try {
+      const body = {
+        mac_address: deviceInfo.mac_address, // Mevcut cihaz bilgisi
+        plate: deviceInfo.plate, // Mevcut plaka bilgisi
+      };
 
-    await removeOwner({ deviceId: id, body }).unwrap();
-    toastSuccessNotify("Cihaz sahibi başarıyla kaldırıldı.");
-  } catch (error) {
-    console.error("Cihaz sahibi kaldırma hatası:", error);
-    toastErrorNotify("Cihaz sahibi kaldırılırken bir hata oluştu.");
-  }
-};
+      await removeOwner({ deviceId: id, body }).unwrap();
+      toastSuccessNotify("Cihaz sahibi başarıyla kaldırıldı.");
+    } catch (error) {
+      console.error("Cihaz sahibi kaldırma hatası:", error);
+      toastErrorNotify("Cihaz sahibi kaldırılırken bir hata oluştu.");
+    }
+  };
 
-  
   const columns = useMemo(
     () => [
       {
@@ -108,7 +107,6 @@ const handleRemoveOwner = async () => {
     ],
     []
   );
-  
 
   return (
     <div>
@@ -160,7 +158,11 @@ const handleRemoveOwner = async () => {
             <Form onSubmit={handleSubmit} className=" w-full">
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col md:flex-row gap-2">
-                  <Input name="mac_address" label="Mac Adres" disabled={Boolean(id)}/>
+                  <Input
+                    name="mac_address"
+                    label="Mac Adres"
+                    disabled={Boolean(id)}
+                  />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-2">
@@ -221,7 +223,7 @@ const handleRemoveOwner = async () => {
           <div className="flex flex-col border rounded-lg shadow-md py-4 bg-white m-2 md:m-6 lg:mx-8 xl:m-16 xxl:mx-32">
             <div className="font-bold text-lg text-center mb-5">
               Kullanıcı Bilgileri
-            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            </div>
             <PageWrapper>
               <div className="w-full">
                 {
