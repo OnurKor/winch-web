@@ -3,14 +3,17 @@ import { Outlet } from "react-router";
 import Footer from "../../components/Footer";
 import { leftMenuTabs } from "../../tabs/leftMenuTabs";
 import Nav from "../../components/sideBar/Nav";
-import SideBar from "/Users/onurkordogan/Desktop/winch-web/src/components/sideBar/SideBar";
+import SideBar from "../../components/sideBar/SideBar";
+
 
 const Home = () => {
+
+
   return (
     <div className="flex h-full w-full">
       <div className="h-full">
         <div className="sticky top-0 left-0 z-10 ">
-          <SideBar tabs={leftMenuTabs} />
+          <SideBar tabs={leftMenuTabs}/>
         </div>
       </div>
 

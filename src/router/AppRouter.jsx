@@ -5,12 +5,11 @@ import AnimatedImage from "../components/LogoAnimation";
 import Toast from "../components/toastMessage/Toast";
 // import Home from "../pages/admin/Home";
 import { useAuth } from "../hooks/useAuth";
-import DeviceList from "../pages/admin/DevicesList";
 import AddUpdateDevice from "../pages/AddUpdateDevice";
 
 const Login = lazy(() => import("../pages/Login"));
 
-const AddCampus = lazy(() => import("../pages/admin/AddCampus"));
+const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
 const Home = lazy(() => import("../pages/admin/Home"));
 // const SecurityHome = lazy(() => import("../pages/security/SecurityHome"));
 // const VisitorHistory = lazy(() => import("../pages/security/VisitorHistory"));
@@ -43,33 +42,24 @@ const Module = lazy(() => import("../pages/Module"));
 // const DeleteLocations = lazy(() => import("../pages/admin/DeleteLocations"));
 
 const routesConfig = {
-
   admin: [
-    { path: "/", element: <AddCampus />, index: true },
-    { path: "/devices_list", element: <Devices />},
+    { path: "/", element: <Dashboard />, index: true },
+    { path: "/devices_list", element: <Devices /> },
     { path: "/users", element: <Users /> },
-    { path: "/add_users", element: < AddUsers/> },
-    { path: "/add_device", element: < AddUpdateDevice/> },
+    { path: "/add_users", element: <AddUsers /> },
+    { path: "/add_device", element: <AddUpdateDevice /> },
   ],
-
 };
 const AppRouter = () => {
-   const user = useAuth();
-   console.log("user", user);
-   const userRoutes = user?.role ? routesConfig[user.role] : [];
+  const user = useAuth();
+  console.log("user", user);
+  const userRoutes = user?.role ? routesConfig[user.role] : [];
   return (
     <Suspense fallback={<AnimatedImage />}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRouter allowedRoles={[user?.role]} />}>
-          <Route
-            path="/"
-            element={
-              user?.role === "admin" ? (
-                <Home />
-              ) : null
-            }
-          >
+          <Route path="/" element={user?.role === "admin" ? <Home /> : null}>
             {userRoutes &&
               userRoutes.map((route, index) => (
                 <Route

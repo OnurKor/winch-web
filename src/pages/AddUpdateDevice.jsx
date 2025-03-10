@@ -1,18 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Input from "../components/formElement/Input";
 import { Form, Formik } from "formik";
 import OutlinedBaseBtn from "../components/buttons/OutlinedBaseBtn";
 import {
   useAddDeviceMutation,
   useGetSingleDeviceQuery,
-  useUpdateUserMutation,
   useUpdateDeviceMutation,
   useRemoveUserMutation,
   useRemoveOwnerMutation,
 } from "../store/services/mainApi";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/Toastfy";
-import { div } from "framer-motion/client";
 import PageWrapper from "../components/PageWrapper";
 import Table, { StatusPill } from "../components/table/NewTables";
 import TableButton from "../components/table/TableButton";
@@ -23,13 +21,9 @@ export default function AddUpdateDevice() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id") || 0;
 
-  console.log(id, "id");
-
   const { data: deviceDetail } = useGetSingleDeviceQuery(id, {
     skip: !id || id === "null",
   });
-
-  console.log(deviceDetail, "deviceDetail");
 
   const [deviceInfo, setDeviceInfo] = useState({
     mac_address: "",
@@ -62,13 +56,9 @@ export default function AddUpdateDevice() {
   const [removeOwner] = useRemoveOwnerMutation();
 
   const handleRemoveOwner = async () => {
+    console.log("remove owner");
     try {
-      const body = {
-        mac_address: deviceInfo.mac_address, // Mevcut cihaz bilgisi
-        plate: deviceInfo.plate, // Mevcut plaka bilgisi
-      };
-
-      await removeOwner({ deviceId: id, body }).unwrap();
+      await removeOwner({ deviceId: id }).unwrap();
       toastSuccessNotify("Cihaz sahibi başarıyla kaldırıldı.");
     } catch (error) {
       console.error("Cihaz sahibi kaldırma hatası:", error);
@@ -183,7 +173,10 @@ export default function AddUpdateDevice() {
         </Formik>
       </div>
 
-      {id && (
+  
+
+
+      {!!id && (
         <>
           <div className="flex flex-col border rounded-lg shadow-md p-6 xl:px-24 xxl:px-36 bg-white m-2 md:mx-6 lg:mx-8 xl:mx-16 xxl:mx-32">
             <div className="font-bold text-lg text-center mb-5">
@@ -215,7 +208,7 @@ export default function AddUpdateDevice() {
               <OutlinedBaseBtn
                 title="Cihaz Sahibini Kaldır"
                 type="button"
-                onClick={handleRemoveOwner} // API çağrısını burada yapıyoruz
+                func={() => handleRemoveOwner()}
                 className="px-6 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md"
               />
             </div>
@@ -237,6 +230,7 @@ export default function AddUpdateDevice() {
           </div>
         </>
       )}
+
     </div>
   );
 }

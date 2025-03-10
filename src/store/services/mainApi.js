@@ -136,10 +136,9 @@ export const mainApi = createApi({
     }),
 
     removeOwner: builder.mutation({
-      query: ({ deviceId, body }) => ({
+      query: ({ deviceId }) => ({
         url: `/devices/${deviceId}/device_owner`,
         method: "delete",
-        body, // API `mac_address` ve `plate` bilgilerini istiyor
       }),
       invalidatesTags: ["Device_Detail"], // Silme sonrası cihaz bilgilerini güncelle
     }),
