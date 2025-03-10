@@ -54,8 +54,6 @@ export const mainApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ["User", "Device", "Device_Detail"],
   endpoints: (builder) => ({
-
-
     updateUser: builder.mutation({
       query: ({ id, body }) => ({
         url: `/users/${id}`,
@@ -72,7 +70,7 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    
+
     deleteUser: builder.mutation({
       query: ({ id }) => ({
         url: `/users/${id}`,
@@ -96,7 +94,7 @@ export const mainApi = createApi({
       }),
       providesTags: ["Device_Detail"],
     }),
-    
+
     getAllUsers: builder.query({
       query: () => ({
         url: `/users`,
@@ -111,7 +109,7 @@ export const mainApi = createApi({
       }),
     }),
     addDevice: builder.mutation({
-      query: ({  body }) => ({
+      query: ({ body }) => ({
         url: `/devices`,
         method: "Post",
         body,
@@ -119,7 +117,7 @@ export const mainApi = createApi({
       invalidatesTags: ["Device"],
     }),
     updateDevice: builder.mutation({
-      query: ({  body, id  }) => ({
+      query: ({ body, id }) => ({
         url: `/devices/${id}`,
         method: "Put",
         body,
@@ -142,8 +140,6 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ["Device_Detail"], // Silme sonrası cihaz bilgilerini güncelle
     }),
-    
-    
   }),
 });
 
@@ -159,5 +155,4 @@ export const {
   useUpdateDeviceMutation,
   useRemoveUserMutation,
   useRemoveOwnerMutation,
-
 } = mainApi;
