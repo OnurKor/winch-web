@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  
   themeMenu: false,
   leftMenu: { menuSize: "large" },
   pageInfo: { pageName: "Home" },
