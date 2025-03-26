@@ -25,20 +25,19 @@ const Login = () => {
       console.log("data", data);
       if (data.success) {
         const { access_token, user } = data.content;
-        
+
         // Redux'a kaydet
 
-        if(user.role === "admin"){
+        if (user.role === "admin") {
           dispatch(
             setCredentials({
               bearer: { access: access_token },
               user,
             })
           );
-        navigate("/")
-
-        } else{
-          toastErrorNotify("Yetkisiz Giriş")
+          navigate("/");
+        } else {
+          toastErrorNotify("Yetkisiz Giriş");
         }
       } else {
         console.error("Login failed:", data.error_message);
@@ -80,14 +79,18 @@ const Login = () => {
                         label="Email"
                         error={touched.email && errors.email}
                       />
-                      {errors.email && touched.email && <span className="text-red-500">{errors.email}</span>}
+                      {errors.email && touched.email && (
+                        <span className="text-red-500">{errors.email}</span>
+                      )}
 
                       <Input
                         name="password"
                         label="Password"
                         error={touched.password && errors.password}
                       />
-                      {errors.password && touched.password && <span className="text-red-500">{errors.password}</span>}
+                      {errors.password && touched.password && (
+                        <span className="text-red-500">{errors.password}</span>
+                      )}
                     </div>
                   </div>
                   <OutlinedBaseBtn title="Giriş Yap" type="submit" />

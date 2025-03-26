@@ -570,5 +570,5 @@ export const {
   useUpdateVisitorCardMutation,
   useGetVisitorsCardAvailableQuery,
   useDeleteVisitorsCardDeviceMutation,
-  useGetVisitorsCardStatisticQuery
+  useGetVisitorsCardStatisticQuery,
 } = mainApi;
