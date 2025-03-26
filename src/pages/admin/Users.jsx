@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import PageWrapper from "../../components/PageWrapper";
 import AppHeader from "../../components/AppHeader";
-import { useDeleteUserMutation, useGetAllUsersQuery } from "../../store/services/mainApi";
+import {
+  useDeleteUserMutation,
+  useGetAllUsersQuery,
+} from "../../store/services/mainApi";
 import { useSelector } from "react-redux";
 import Table, { StatusPill } from "../../components/table/NewTables";
 import TableButton from "../../components/table/TableButton";
@@ -14,19 +17,25 @@ const Users = () => {
   const [deleteUser] = useDeleteUserMutation();
 
   const { data } = useGetAllUsersQuery();
-  console.log("useGetAllUsersQuery",data)
+  console.log("useGetAllUsersQuery", data);
 
   const deleteFunc = (id) => {
     console.log(id, "user delete");
-    deleteUser({id});
+    deleteUser({ id });
   };
-console.log("burası çalısıyor")
+  console.log("burası çalısıyor");
   const columns = React.useMemo(
     () => [
       {
         Header: "Actions",
         accessor: "actions",
-        Cell: ({ row }) => <TableButton row={row} navigateUrl={"/add_users"} deleteFunc={deleteFunc}/>,
+        Cell: ({ row }) => (
+          <TableButton
+            row={row}
+            navigateUrl={"/add_users"}
+            deleteFunc={deleteFunc}
+          />
+        ),
       },
       {
         Header: "Id",
@@ -53,9 +62,6 @@ console.log("burası çalısıyor")
       },
     ],
     []
-
-
-  
   );
   return (
     <PageWrapper>
@@ -67,7 +73,7 @@ console.log("burası çalısıyor")
       />
 
       <div className="w-full">
-        {data && <Table columns={columns} data={[...data?.content || []]} />}
+        {data && <Table columns={columns} data={[...(data?.content || [])]} />}
       </div>
     </PageWrapper>
   );
