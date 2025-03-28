@@ -173,9 +173,6 @@ export default function AddUpdateDevice() {
         </Formik>
       </div>
 
-  
-
-
       {!!id && (
         <>
           <div className="flex flex-col border rounded-lg shadow-md p-6 xl:px-24 xxl:px-36 bg-white m-2 md:mx-6 lg:mx-8 xl:mx-16 xxl:mx-32">
@@ -230,7 +227,6 @@ export default function AddUpdateDevice() {
           </div>
         </>
       )}
-
     </div>
   );
 }
