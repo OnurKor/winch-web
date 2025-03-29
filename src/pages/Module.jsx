@@ -1,6 +1,6 @@
 // import React from 'react'
 // import unauthorization from '../assets/images/error_401.jpg'
-import Users from './admin/Users'
+import Users from "./admin/Users";
 
 // const Module = () => {
 //   return (
@@ -9,20 +9,20 @@ import Users from './admin/Users'
 
 //      <img src={unauthorization} alt="deneme" className='flex justify-center items-center' />
 //       </div>
-     
+
 //     </PageWrapper>
 //   )
 // }
 
 // export default Module
-import React from 'react'
+import React from "react";
 
 const Module = () => {
   return (
     <div>
       <h1>Module</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Module
+export default Module;
