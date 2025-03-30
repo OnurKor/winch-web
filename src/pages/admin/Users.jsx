@@ -21,7 +21,7 @@ const Users = () => {
 
   const deleteFunc = (id) => {
     console.log(id, "user delete");
-    deleteUser({id});
+    deleteUser({ id });
   };
   console.log("burası çalısıyor");
   const columns = React.useMemo(
