@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 import logo from "../assets/logo/logo.jpeg";
 
 const AnimatedImage = () => {
@@ -12,10 +12,10 @@ const AnimatedImage = () => {
         ease: "easeInOut",
       }}
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
       }}
     >
       <motion.img
@@ -24,9 +24,9 @@ const AnimatedImage = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         style={{
-          width: '400px',
-          height: 'auto',
-          borderRadius: '20px',
+          width: "400px",
+          height: "auto",
+          borderRadius: "20px",
         }}
       />
     </motion.div>
