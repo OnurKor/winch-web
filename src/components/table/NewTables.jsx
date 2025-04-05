@@ -140,7 +140,7 @@ export function VisitorStatusCard({ value }) {
         "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
         status === "available" ? "bg-green-100 text-green-800" : null,
         status === "assigned" ? "bg-red-100 text-red-800" : null,
-        status === "passive" ? "bg-slate-300 text-slate-800" : null,
+        status === "passive" ? "bg-slate-300 text-slate-800" : null
       )}
     >
       {status}
@@ -262,7 +262,14 @@ export function AvatarCell({ value, column, row }) {
   );
 }
 
-function Table({ columns, data = [], title, func, gofunc = null ,globalFilter= true}) {
+function Table({
+  columns,
+  data = [],
+  title,
+  func,
+  gofunc = null,
+  globalFilter = true,
+}) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -280,7 +287,7 @@ function Table({ columns, data = [], title, func, gofunc = null ,globalFilter= t
     state,
     preGlobalFilteredRows,
     setGlobalFilter,
-    input
+    input,
   } = useTable(
     {
       columns,
@@ -335,12 +342,14 @@ function Table({ columns, data = [], title, func, gofunc = null ,globalFilter= t
     <>
       <div className="w-full  flex  justify-between ">
         <div className="flex flex-col md:flex-row w-[360px]  shadow-sm bg-gray-50 rounded-[8px] md:gap-8  md:ml-0 ">
-         {globalFilter &&  <GlobalFilter
-            preGlobalFilteredRows={preGlobalFilteredRows}
-            globalFilter={state.globalFilter}
-            setGlobalFilter={setGlobalFilter}
-            gofunc={gofunc}
-          />}
+          {globalFilter && (
+            <GlobalFilter
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              globalFilter={state.globalFilter}
+              setGlobalFilter={setGlobalFilter}
+              gofunc={gofunc}
+            />
+          )}
           {headerGroups.map((headerGroup) =>
             headerGroup.headers.map((column) =>
               column.Filter ? (
@@ -354,7 +363,10 @@ function Table({ columns, data = [], title, func, gofunc = null ,globalFilter= t
         {title && <FilledBtn title={title} func={func} />}
       </div>
       <div className="mt-4 flex flex-col">
-        <div className=" overflow-x-auto swiper-scrollbar scroll-smooth cursor-grab" ref={scrollContainerRef}>
+        <div
+          className=" overflow-x-auto swiper-scrollbar scroll-smooth cursor-grab"
+          ref={scrollContainerRef}
+        >
           <div className="py-2 align-middle inline-block min-w-full  ">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg ">
               <table
