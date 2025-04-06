@@ -17,13 +17,13 @@ const TableButton = ({
   navigateUrl,
   setEditData = () => {},
   setEditModal = () => {},
-  exit=false,
+  exit = false,
   deleteFunc,
   changeStatus,
   changeCard,
   goDevices,
   matchDevices,
-  matchVisitors=false,
+  matchVisitors = false,
   setMatchModal,
   navigateHistory,
   view,
@@ -61,11 +61,9 @@ const TableButton = ({
     deleteFunc(row.original.id);
   };
   const handleChangeStatus = () => {
-    
     changeStatus(row.original);
   };
   const handleChangeVisitor = () => {
-    
     changeCard(row.original);
   };
 
@@ -83,11 +81,9 @@ const TableButton = ({
       navigate(`/device_history/${row.original.id}`);
     } else if (navigateHistory === "location") {
       navigate(`/location_history/${row.original.id}`);
-    }
-    else if (navigateHistory === "visitor") {
+    } else if (navigateHistory === "visitor") {
       navigate(`/visitor_history/${row.original.id}`);
-    }
-    else if (navigateHistory === "zoneHistory") {
+    } else if (navigateHistory === "zoneHistory") {
       navigate(`/zone_history/${row.original.id}`);
     }
   };
@@ -119,7 +115,7 @@ const TableButton = ({
             onMouseLeave={() => setEditItem(false)}
             className="bg-red-500 text-white px-2 py-1 rounded-md w-8 flex justify-center items-center"
           >
-            <ImExit/>
+            <ImExit />
           </button>
           {editItem && (
             <span className="absolute -top-7 left-0 bg-red-500 text-white px-1 rounded-md">
@@ -131,16 +127,26 @@ const TableButton = ({
       {changeCard && (
         <div className="relative">
           <button
-            onClick={()=>handleChangeVisitor(row.original)}
+            onClick={() => handleChangeVisitor(row.original)}
             onMouseOver={() => setChangeItem(true)}
             onMouseLeave={() => setChangeItem(false)}
-            className={`${row.original.is_visitor_card === 0 ? "bg-emerald-500" : "bg-red-400"} text-white px-2 py-1 rounded-md w-8`}
+            className={`${
+              row.original.is_visitor_card === 0
+                ? "bg-emerald-500"
+                : "bg-red-400"
+            } text-white px-2 py-1 rounded-md w-8`}
           >
-           {row.original.is_visitor_card === 0 ?  <IoIdCardOutline /> : <MdOutlineSecurity />} 
+            {row.original.is_visitor_card === 0 ? (
+              <IoIdCardOutline />
+            ) : (
+              <MdOutlineSecurity />
+            )}
           </button>
           {changeItem && (
             <span className="absolute -top-7 left-0 bg-emerald-500 text-white px-1 rounded-md">
-             {row.original.is_visitor_card === 1 ? "Make Employee Card" : "Make Visitor Card"}
+              {row.original.is_visitor_card === 1
+                ? "Make Employee Card"
+                : "Make Visitor Card"}
             </span>
           )}
         </div>
@@ -162,25 +168,23 @@ const TableButton = ({
           )}
         </div>
       )}
-      {changeStatus &&
-        row.original.status !==
-          "assigned" &&(
-            <div className="relative">
-              <button
-                onClick={handleChangeStatus}
-                onMouseOver={() => setChangeItem(true)}
-                onMouseLeave={() => setChangeItem(false)}
-                className="bg-emerald-400 text-white px-2 py-1 rounded-md w-8"
-              >
-               <TbExchange />
-              </button>
-              {changeItem && (
-                <span className="absolute -top-7 left-0 bg-emerald-300 text-white px-1 rounded-md">
-                  Change Status
-                </span>
-              )}
-            </div>
+      {changeStatus && row.original.status !== "assigned" && (
+        <div className="relative">
+          <button
+            onClick={handleChangeStatus}
+            onMouseOver={() => setChangeItem(true)}
+            onMouseLeave={() => setChangeItem(false)}
+            className="bg-emerald-400 text-white px-2 py-1 rounded-md w-8"
+          >
+            <TbExchange />
+          </button>
+          {changeItem && (
+            <span className="absolute -top-7 left-0 bg-emerald-300 text-white px-1 rounded-md">
+              Change Status
+            </span>
           )}
+        </div>
+      )}
 
       {goDevices && (
         <div className="relative">
@@ -301,7 +305,10 @@ const TableButton = ({
       {matchVisitors && (
         <div className="relative">
           <button
-            onClick={()=>{setMatchModal(true);setMatchData(row.original)}}
+            onClick={() => {
+              setMatchModal(true);
+              setMatchData(row.original);
+            }}
             onMouseOver={() => setMatch(true)}
             onMouseLeave={() => setMatch(false)}
             className="bg-slate-500 text-white px-2 py-1 rounded-md w-8"
