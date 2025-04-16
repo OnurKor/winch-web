@@ -1,7 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
-  reducerPath: 'authApi',
+  reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.quatromodule.com",
     //baseUrl: 'http://167.86.81.154:8017',
@@ -13,8 +13,8 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (user) => ({
-        url: '/auth/login',
-        method: 'POST',
+        url: "/auth/login",
+        method: "POST",
         body: {
           email: user.email,
           password: user.password,
@@ -25,24 +25,25 @@ export const authApi = createApi({
       query: () => ({
         url: "/auth/logout",
         method: "delete",
-        body: {
-        },
-        
+        body: {},
       }),
       onQueryFulfilled: (data, { dispatch }) => {
-        console.log('Logout response:', data);
+        console.log("Logout response:", data);
         if (data && data.status === 200) {
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('user');
-          console.log('Logout success - localStorage cleared');
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("user");
+          console.log("Logout success - localStorage cleared");
         } else {
-          console.log('Logout failed');
+          console.log("Logout failed");
         }
       },
     }),
-    
-    
   }),
 });
 
-export const { useLoginMutation, useFetchDataQuery,useRefreshMutation, useLogoutMutation } = authApi;
+export const {
+  useLoginMutation,
+  useFetchDataQuery,
+  useRefreshMutation,
+  useLogoutMutation,
+} = authApi;
