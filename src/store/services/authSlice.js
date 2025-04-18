@@ -3,11 +3,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // localStorage'dan başlangıç değerlerini al
-const storedAccessToken = localStorage.getItem('accessToken');
-const storedUser = localStorage.getItem('user');
+const storedAccessToken = localStorage.getItem("accessToken");
+const storedUser = localStorage.getItem("user");
 
 const initialState = {
-  accessToken: storedAccessToken ? JSON.parse(storedAccessToken) : null, 
+  accessToken: storedAccessToken ? JSON.parse(storedAccessToken) : null,
   user: storedUser ? JSON.parse(storedUser) : null,
   token: null,
 };
@@ -17,11 +17,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      const { bearer, user } = action.payload; 
-      state.accessToken = bearer; 
-      state.user = user; 
-      localStorage.setItem('accessToken', JSON.stringify(bearer));
-      localStorage.setItem('user', JSON.stringify(user));
+      const { bearer, user } = action.payload;
+      state.accessToken = bearer;
+      state.user = user;
+      localStorage.setItem("accessToken", JSON.stringify(bearer));
+      localStorage.setItem("user", JSON.stringify(user));
     },
     logOut: (state) => {
       state.user = null;
@@ -29,10 +29,9 @@ const authSlice = createSlice({
       state.accessToken = null;
 
       // localStorage'dan temizle
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('user');
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
     },
-   
   },
 });
 
