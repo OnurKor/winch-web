@@ -10,6 +10,7 @@ const initialState = {
   day: { firstDay: "", secondDay: "" },
   lang_code: "English",
 };
+
 const mainSlice = createSlice({
   name: "main",
   initialState,
