@@ -1,7 +1,5 @@
 import { AiOutlineHome } from "react-icons/ai";
-import {
-  MdOutlineOnDeviceTraining,
-} from "react-icons/md";
+import { MdOutlineOnDeviceTraining } from "react-icons/md";
 import { CgTemplate } from "react-icons/cg";
 
 import { FaUsersBetweenLines } from "react-icons/fa6";
