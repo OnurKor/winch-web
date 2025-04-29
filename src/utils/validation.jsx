@@ -9,8 +9,7 @@ let validation = object({
   email: string()
     .email(messages.email) // Email format doğrulaması
     .required("Email is required"), // Zorunlu alan mesajı
-  password: string()
-    .required(messages.pass), // Şifre için doğrulama
+  password: string().required(messages.pass), // Şifre için doğrulama
 });
 
 export default validation;
