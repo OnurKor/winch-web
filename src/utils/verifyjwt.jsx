@@ -2,7 +2,6 @@ import { SignJWT, jwtVerify } from "jose";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-
 export const getJwtSecretKey = () => {
   const secretKey = process.env.REACT_APP_JWT_SECRET_KEY;
   console.log(secretKey);
@@ -12,7 +11,7 @@ export const getJwtSecretKey = () => {
   return new TextEncoder().encode(secretKey);
 };
 
-export async function  verifyJwtToken(token) {
+export async function verifyJwtToken(token) {
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
     return payload;
@@ -30,7 +29,6 @@ export async function setVerifyToken(data) {
       .sign(getJwtSecretKey());
     cookies.set("token", token, { path: "/" });
   } catch (error) {
-    console.log("error")
+    console.log("error");
   }
 }
-
