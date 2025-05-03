@@ -9,6 +9,7 @@ export const toastWarnNotify = (msg) => {
     progress: undefined,
   });
 };
+
 export const toastSuccessNotify = (msg) => {
   toast.success(msg, {
     autoClose: 3000,
