@@ -62,7 +62,7 @@ module.exports = {
       borderRadius: {
         xsmall: "4px",
         small: "8px", // Relatively small containers için 8px border radius
-        medium:"12px",
+        medium: "12px",
         large: "16px", // Main containers için 16px border radius
       },
       boxShadow: {
@@ -72,7 +72,7 @@ module.exports = {
         extensive: "0px 10px 60px 0px rgba(5, 16, 54, 0.05)",
       },
       colors: {
-        turna:"#60A5FA",
+        turna: "#60A5FA",
         cosmic: "#FFF8DD",
         philippine: "#FFC700",
         lavender: "#E5F0FD",
@@ -95,12 +95,12 @@ module.exports = {
         "4/3": "4 / 3",
         "3/2": "3 / 2",
       },
-      peer: ['checked'],
+      peer: ["checked"],
       backgroundImage: {
-        'home-pattern': "url('/public/assets/card/otel3.jpg')",
-        'footer-texture': "url('/img/footer-texture.png')",
-      }
+        "home-pattern": "url('/public/assets/card/otel3.jpg')",
+        "footer-texture": "url('/img/footer-texture.png')",
+      },
     },
   },
   plugins: [],
-}
+};
