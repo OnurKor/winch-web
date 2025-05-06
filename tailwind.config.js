@@ -12,6 +12,7 @@ module.exports = {
         mxl: "1080px",
         xxl: "1536px",
       },
+      
       fontFamily: {
         jost: ["var(--jost)"],
       },
