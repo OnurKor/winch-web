@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ErrorMessage, useField } from "formik";
 import classNames from "classnames";
-import redAlert  from   "../../assets/icons/red-alert.svg"
+import redAlert from "../../assets/icons/red-alert.svg";
 
 export default function Input({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
   const [isFocused, setIsFocused] = useState(false);
- 
 
   const [skipAnimation, setSkipAnimation] = useState(false); // Animasyonu atlama durumu
 
@@ -28,28 +27,24 @@ export default function Input({ label, ...props }) {
     field.onBlur(e);
   };
 
-
-
-
   return (
     <>
       <label className="w-full relative  justify-center items-center cursor-pointer">
-      <div
-  className={classNames(
-    "absolute w-full  text-secondary font-regular transition-all duration-200 ease-in-out  pl-3",
-    {
-      "mt-[2px]  text-body-small ": isFocused || field.value, 
-      "mt-3.5  text-label-large ": !isFocused || !field.value, 
-      "transition-none": skipAnimation, 
-      
-    }
-  )}
->
-  {label}
-</div>
+        <div
+          className={classNames(
+            "absolute w-full  text-secondary font-regular transition-all duration-200 ease-in-out  pl-3",
+            {
+              "mt-[2px]  text-body-small ": isFocused || field.value,
+              "mt-3.5  text-label-large ": !isFocused || !field.value,
+              "transition-none": skipAnimation,
+            }
+          )}
+        >
+          {label}
+        </div>
 
         <input
-          {...field} 
+          {...field}
           {...props}
           onFocus={handleFocus}
           onBlur={handleBlur}
