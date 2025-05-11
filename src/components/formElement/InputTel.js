@@ -9,7 +9,6 @@ const InputTel = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
   const [isFocused, setIsFocused] = useState(false);
 
-
   const handleChange = (value, data, event, formattedValue) => {
     helpers.setValue(value); // Formik'in değer ayarlama özelliği
   };
