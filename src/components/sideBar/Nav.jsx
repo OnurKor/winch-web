@@ -4,7 +4,13 @@ import hamburger from "../../assets/logo/hamburger.svg";
 import turna from "../../assets/logo/logo.jpeg";
 import { BsSun } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMenuSize, selectPageName, setPageName, setTheme, setThemeMenu } from "../../store/services/mainSlice";
+import {
+  selectMenuSize,
+  selectPageName,
+  setPageName,
+  setTheme,
+  setThemeMenu,
+} from "../../store/services/mainSlice";
 import { themeTabs } from "../../tabs/themeTabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { selectCurrentUser } from "../../store/services/authSlice";
@@ -20,8 +26,7 @@ const Nav = () => {
   const [viewSideBar, setViewSideBar] = useState(false);
   const { themeMenu } = useSelector((state) => state.main);
   const user = useSelector(selectCurrentUser);
-  const tabs = leftMenuTabs
-
+  const tabs = leftMenuTabs;
 
   return (
     <>
@@ -63,40 +68,45 @@ const Nav = () => {
       <AnimatePresence>
         {viewSideBar && (
           <motion.div
-          initial={{ opacity: 0, x: "-100vw" }}  // Başlangıçta dışarıda
-          animate={{ opacity: 1, x: 0 }}  // Animasyonla ekrana gelsin
-          exit={{ opacity: 0, x: "-100vw" }}  // Çıkarken sol tarafa kayacak
-          transition={{ duration: 0.5 }}
-          className="fixed top-0 left-0 w-[50%] h-[100vh] z-[10000000] flex bg-white border flex-col justify-center items-start"
+            initial={{ opacity: 0, x: "-100vw" }} // Başlangıçta dışarıda
+            animate={{ opacity: 1, x: 0 }} // Animasyonla ekrana gelsin
+            exit={{ opacity: 0, x: "-100vw" }} // Çıkarken sol tarafa kayacak
+            transition={{ duration: 0.5 }}
+            className="fixed top-0 left-0 w-[50%] h-[100vh] z-[10000000] flex bg-white border flex-col justify-center items-start"
           >
             {tabs?.map((item, index) => {
-          return (
-            
-            <div key={index} className="px-3 mt-2 flex flex-col justify-center items-start  w-full">
-              
-              {item.subTitle.map((item, index) => {
-                return (
-                  <div
-                    className={`${
-                      pageName === item.name ? "bg-[#F4F6FA] text-blue-500" : ""
-                    }  flex justify-start items-center mt-1 gap-3 p-2 rounded-lg text-[#B7B8BB] hover:text-blue-500 cursor-pointer  w-full`}
-                    key={index}
-                    onClick={() => {
-                      dispatch(setPageName(item.name));
-                      navigate(item.route);
-                      setViewSideBar(!viewSideBar)
-                    }}
-                  >
-                    <item.icon className="" size={26} />
-                    {menuSize === "large" && (
-                      <p className="text-center mt-1 text-sm">{item.name}s</p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
+              return (
+                <div
+                  key={index}
+                  className="px-3 mt-2 flex flex-col justify-center items-start  w-full"
+                >
+                  {item.subTitle.map((item, index) => {
+                    return (
+                      <div
+                        className={`${
+                          pageName === item.name
+                            ? "bg-[#F4F6FA] text-blue-500"
+                            : ""
+                        }  flex justify-start items-center mt-1 gap-3 p-2 rounded-lg text-[#B7B8BB] hover:text-blue-500 cursor-pointer  w-full`}
+                        key={index}
+                        onClick={() => {
+                          dispatch(setPageName(item.name));
+                          navigate(item.route);
+                          setViewSideBar(!viewSideBar);
+                        }}
+                      >
+                        <item.icon className="" size={26} />
+                        {menuSize === "large" && (
+                          <p className="text-center mt-1 text-sm">
+                            {item.name}s
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
