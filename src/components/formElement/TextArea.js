@@ -1,8 +1,7 @@
 import classNames from "classnames";
 import { ErrorMessage, useField } from "formik";
 import React, { useEffect, useState } from "react";
-import redAlert  from   "../../assets/icons/red-alert.svg"
-
+import redAlert from "../../assets/icons/red-alert.svg";
 
 export default function TextArea({ label, ...props }) {
   const [field, meta, helpers] = useField(props);
@@ -31,8 +30,7 @@ export default function TextArea({ label, ...props }) {
           "absolute h-4 transition-all duration-300 text-label-large text-secondary font-regular w-2": true,
           "mt-[4px] left-2 text-body-small text-default font-regular":
             isFocused || field.value,
-          "top-6 transform -translate-y-1/2 left-2":
-            !isFocused && !field.value,
+          "top-6 transform -translate-y-1/2 left-2": !isFocused && !field.value,
         })}
       >
         {label}
@@ -53,7 +51,6 @@ export default function TextArea({ label, ...props }) {
           src={redAlert}
           alt="Error Alert"
           className="absolute right-3 top-6 transform -translate-y-1/2 w-5 h-5"
-         
         />
       )}
     </div>
