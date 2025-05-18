@@ -5,7 +5,8 @@ export default function OutlinedBaseBtn({
   disabled,
   extensive,
   type = "button",
-}) {
+})
+ {
   return (
     <button
       onClick={func}
