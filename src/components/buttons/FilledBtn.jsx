@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FilledBtn({ title, func, image, disabled }) {
+export default function FilledBtn({ title, func, disabled }) {
   return (
     <button
       onClick={func}
